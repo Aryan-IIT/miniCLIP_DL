@@ -8,7 +8,7 @@ Project repository for ES 667 - Deep Learning
 
 ### Proposal Report 
 
-Please find the proposal report at [initial report/DL_Project_Proposal.pdf](initial report/DL_Project_Proposal.pdf).
+Please find the proposal report here: [DL_Project_Proposal.pdf](initial%20report/DL_Project_Proposal.pdf).
 
 ### Datasets: 
 
