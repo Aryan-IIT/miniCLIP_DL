@@ -3,3 +3,13 @@ flickr30k
 
 .DS_store
 #for mac
+
+
+experiments/__pycache__/
+experiments/venv/
+experiments/wandb/
+experiments/src/__pycache__/
+
+app/__pycache__/
+app/src/__pycache__/
+app/data/
