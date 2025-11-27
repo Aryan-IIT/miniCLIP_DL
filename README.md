@@ -50,6 +50,13 @@ We rely on Hugging Face checkpoints to initialize both encoders:
 - **RoBERTa Base** (`roberta-base`): <https://huggingface.co/roberta-base>
 - **ResNet-101** (Torchvision pretrained weights): <https://huggingface.co/pytorch/vision-resnet-101>
 
+## Released MiniCLIP Checkpoints
+
+| Model | Link | Notes |
+| ----- | ----- | ----- |
+| ViT Small + RoBERTa | [HexAryan/vitsmall_roberta](https://huggingface.co/HexAryan/vitsmall_roberta) | Full fine-tuning followed by last-two-layer stabilization (Setup 3). |
+| ResNet101 + RoBERTa | [HexAryan/resnet101_roberta](https://huggingface.co/HexAryan/resnet101_roberta) | Full-model fine-tuning on Flickr30k (Setup 2). |
+
 ## Repo Layout
 
 - `experiments/`: training scripts for the three setups (plus CLI evaluators).
@@ -116,4 +123,3 @@ python inference_batch.py --num-samples 800 --topk 10
 ![Streamlit Screenshot 3](photos_streamlit/three.png)
 
 ![Streamlit Screenshot 4](photos_streamlit/four.png)
-
