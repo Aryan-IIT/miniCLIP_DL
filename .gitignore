@@ -13,3 +13,10 @@ experiments/src/__pycache__/
 app/__pycache__/
 app/src/__pycache__/
 app/data/
+app/models/
+
+#large models can not be pushed 
+experiments/checkpoints/
+experiments/checkpoints_full/
+experiments/checkpoints_partial/
+experiments/checkpoints_store/
