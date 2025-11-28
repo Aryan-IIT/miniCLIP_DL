@@ -6,6 +6,7 @@ Project repository for ES 667 - Deep Learning
 * Aryan Solanki – 23110049
 * Nishchay Bhutoria - 23110222
 
+Please find the final project report here: [final_report.pdf](report_and_slides/final_report.pdf).
 Please find the original proposal here: [DL_Project_Proposal.pdf](report_and_slides/DL_Project_Proposal.pdf).
 Please find the project slides here: [miniclip_slides.pdf](report_and_slides/miniclip_slides.pdf).
 
