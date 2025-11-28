@@ -17,7 +17,7 @@ from src.utils import SymmetricLoss, AvgMeter
 def unwrap_model(model):
     return model.module if isinstance(model, nn.DataParallel) else model
 
-def train_epoch(model, loader, optimizer, criterion, device, epoch):
+def train_epoch(model, loader, optimizer, criterion, device, epoch, scheduler=None):
     model.train()
     loss_meter = AvgMeter()
     
@@ -37,7 +37,10 @@ def train_epoch(model, loader, optimizer, criterion, device, epoch):
         
         # Backward pass
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
+        if scheduler:
+            scheduler.step()
         
         loss_meter.update(loss.item(), image.size(0))
         tqdm_object.set_postfix(train_loss=loss_meter.avg)
@@ -177,6 +180,12 @@ def main():
         lr=Config.LEARNING_RATE, 
         weight_decay=Config.WEIGHT_DECAY
     )
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(
+        optimizer,
+        max_lr=Config.LEARNING_RATE,
+        epochs=Config.EPOCHS,
+        steps_per_epoch=len(train_loader)
+    )
     criterion = SymmetricLoss()
     
     best_loss = float('inf')
@@ -185,7 +194,7 @@ def main():
         print(f"\nEpoch {epoch+1}/{Config.EPOCHS}")
         
         # Train
-        train_loss = train_epoch(model, train_loader, optimizer, criterion, Config.DEVICE, epoch)
+        train_loss = train_epoch(model, train_loader, optimizer, criterion, Config.DEVICE, epoch, scheduler)
         
         # Validate
         val_loss = validate(model, val_loader, criterion, Config.DEVICE)
@@ -223,4 +232,5 @@ def main():
     wandb.finish()
 
 if __name__ == "__main__":
+
     main()
